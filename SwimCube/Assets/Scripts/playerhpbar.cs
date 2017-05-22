@@ -2,7 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 public class playerhpbar : MonoBehaviour {
+	public static playerhpbar me;
 	private Image[] hearts;
+	void Awake(){
+		me = this;
+
+	}
 	// Use this for initialization
 	void Start () {
 		hearts = GetComponentsInChildren<Image> ();
