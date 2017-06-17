@@ -7,7 +7,7 @@ public class boomCtrl : MonoBehaviour {
 	private float damageRange=2f;
 	private float damage=1;
 	List<GameObject> animals = new List<GameObject>();
-
+	public GameObject boomFX;
 	// Use this for initialization
 	void Start () {
 		Reset ();
@@ -39,6 +39,7 @@ public class boomCtrl : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		BoomDamage ();
 		BoomEffect ();
+		yield return new WaitForSeconds (1);
 		Reset ();
 		//StopCoroutine (boomEvent);
 		StopAllCoroutines();
@@ -47,6 +48,7 @@ public class boomCtrl : MonoBehaviour {
 		SoundManager.me.PlayAudioAtPosition (SoundType.boomstart,transform.position);
 	}
 	void BoomEffect(){
+		boomFX.SetActive (true);
 		SoundManager.me.PlayAudioAtPosition (SoundType.BOOM);
 	}
 	void BoomDamage(){
@@ -58,6 +60,7 @@ public class boomCtrl : MonoBehaviour {
 	}
 	void Reset(){
 		wilBoom = false;
+		boomFX.SetActive (false);
 		int newX = Random.Range (-4,4);
 		int newY = Random.Range (-4,4);
 		int newZ = Random.Range (-4,4);

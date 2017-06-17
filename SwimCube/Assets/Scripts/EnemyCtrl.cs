@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCtrl : Animal {
 	private Transform _target;
 	public float damage =1;
+	private float timer = 0;
 	// Use this for initialization
 	void Start () {
 		_target = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -24,7 +25,12 @@ public class EnemyCtrl : Animal {
 
 	void OnCollisionEnter(Collision target){
 		if(target.gameObject.CompareTag("Player")){
-			target.gameObject.GetComponent<PlayerCtrl> ().GetDamage(damage,1);
+			if(timer<Time.time){
+				timer += 1;
+				target.gameObject.GetComponent<PlayerCtrl> ().GetDamage(damage,1);
+			}
+
+
 			SoundManager.me.PlayAudioAtPosition (SoundType.sharkhit,transform.position);
 		}
 	}

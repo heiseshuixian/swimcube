@@ -10,6 +10,7 @@ public class PlayerCtrl : Animal {
 	Vector3 final ;
 	public int hitType=1;
 	private int speed=1;
+	public GameObject blood;
 	// Use this for initialization
 	void Start () {
 		_currentHP = _HPMax;
@@ -70,8 +71,14 @@ public class PlayerCtrl : Animal {
 	}
 	public override void GetDamage (float _damage,int hittype)
 	{
+		StartCoroutine (liuxue());
 		hitType = hittype;
 		base.GetDamage (_damage,hittype);
 		playerhpbar.me.setValue (_currentHP/_HPMax);
+	}
+	IEnumerator liuxue(){
+		blood.SetActive (true);
+		yield return new WaitForSeconds (1);
+		blood.SetActive (false);
 	}
 }

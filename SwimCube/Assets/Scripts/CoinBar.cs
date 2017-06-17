@@ -11,6 +11,6 @@ public class CoinBar : MonoBehaviour {
 	}
 	public void AddCoin(){
 		_coin++;
-		coin.text = "财宝："+_coin;
+		coin.text = _coin.ToString();
 	}
 }

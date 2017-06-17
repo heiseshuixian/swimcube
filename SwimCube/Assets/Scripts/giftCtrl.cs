@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class giftCtrl : MonoBehaviour {
-
+	public GameObject giftFX;
+	private GameObject entryFX;
 	// Use this for initialization
 	void Start () {
 		Reset ();
@@ -16,9 +17,16 @@ public class giftCtrl : MonoBehaviour {
 	void OnTriggerEnter(Collider target){
 		if(target.CompareTag("Player")){
 			SoundManager.me.PlayAudioAtPosition (SoundType.coin);
+			StartCoroutine (ShowFX());
 			Reset ();
 			CoinBar.me.AddCoin ();
 		}
+	}
+	IEnumerator ShowFX(){
+		entryFX = GameObject.Instantiate<GameObject> (giftFX);
+		entryFX.transform.position = transform.position;
+		yield return new WaitForSeconds (1);
+		Destroy (entryFX);
 	}
 	void Reset(){
 
