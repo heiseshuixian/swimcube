@@ -20,6 +20,7 @@ public class giftCtrl : MonoBehaviour {
 			StartCoroutine (ShowFX());
 			Reset ();
 			CoinBar.me.AddCoin ();
+            TriggerManager.GetInstance().Trigger( E_TriggerType.on_get_gift);
 		}
 	}
 	IEnumerator ShowFX(){
